@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="ru">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="author" content="The CSS Ninja">
+	<meta name="keywords" content="CSS, Tree menu, checked pseudo-class, CSS Ninja">
+	<meta name="description" content="Create a pure CSS tree folder structure with collapsible folders utilising checkboxes along with the checked pseudo-class">
+	<meta name="robots" content="all">
+	<meta name="copyright" content="The CSS Ninja">
+
+	<!--[if gte IE 9 ]><link rel="stylesheet" type="text/css" href="{% static '_styles.css' %}" media="screen"><![endif]-->
+	<!--[if !IE]>--><link rel="stylesheet" type="text/css" href="{% static '_styles.css' %}" media="screen"><!--<![endif]-->
+
+	<title>Pure CSS collapsible tree menu | The CSS Ninja</title>
+
+</head>
+<body>
+	<h3>{{menu_title}}</h3>
+	<ol class="tree">
+		{% for genre in genres%}
+
+
+		<li>
+			<label for="folder1">{{genre.title}}</label> <input type="checkbox"  id="folder1" />
+			<ol>
+				<li>
+					<label for="subfolder1">Книги</label> <input type="checkbox" id="subfolder1" />
+					<ol>
+
+						{% if genre.title == "Детектив" %}
+							{% for detective in detectives%}
+								<li class="file"><a href="https://yandex.ru/search/?text={{detective.author}}+{{detective.title}}">{{detective.author}} - "{{detective.title}}"</a></li>
+							{% endfor %}
+						{% elif genre.title == "Мистика"%}
+							{% for mystic in mystics%}
+								<li class="file"><a href="https://yandex.ru/search/?text={{mystic.author}}+{{mystic.title}}">{{mystic.author}} - "{{mystic.title}}"</a></li>
+							{% endfor %}
+						{% elif genre.title == "Реализм"%}
+							{% for realistic in realistics%}
+								<li class="file"><a href="https://yandex.ru/search/?text={{realistic.author}}+{{realistic.title}}">{{realistic.author}} - "{{realistic.title}}"</a></li>
+							{% endfor %}
+						{% elif genre.title == "Фантастика" %}
+							{% for fantastic in fantastics%}
+								<li class="file"><a href="https://yandex.ru/search/?text={{fantastic.author}}+{{fantastic.title}}">{{fantastic.author}} - "{{fantastic.title}}"</a></li>
+							{% endfor %}
+						{% elif genre.title == "Фэнтези" %}
+							{% for fantasy in fantasys%}
+								<li class="file"><a href="https://yandex.ru/search/?text={{fantasy.author}}+{{fantasy.title}}">{{fantasy.author}} - "{{fantasy.title}}"</a></li>
+							{% endfor %}
+						{% elif genre.title == "Боевик" %}
+							{% for action in actions%}
+								<li class="file"><a href="https://yandex.ru/search/?text={{action.author}}+{{action.title}}">{{action.author}} - "{{action.title}}"</a></li>
+							{% endfor %}
+						{% endif %}
+
+					</ol>
+				</li>
+			</ol>
+		</li>
+	{% endfor %}
+	</ol>
+
+</body>
+</html>
